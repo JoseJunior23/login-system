@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_DATABASE}
     volumes:
-      - postgres_data:/var/lib/postgresql
+      - postgres_data:/var/lib/postgresql/data
     ports:
       - ${DB_PORT}:5432
     healthcheck:
@@ -32,13 +32,13 @@ services:
     env_file:
       - .env
     environment:
-      - DATABASE_URL=${DB_URL}
+      - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:${DB_PORT}/${DB_DATABASE}?schema=public
     depends_on:
       postgres:
         condition: service_healthy
 
 networks:
-  banca-admin_project_network:
+  login-system_project_network:
     driver: bridge
 
 volumes:
