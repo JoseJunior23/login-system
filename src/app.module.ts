@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
+import { ConfigurationModule } from '@shared/infra/configurations/configuration.module';
 
 @Module({
-  imports: [],
+  imports: [ConfigurationModule],
   controllers: [],
   providers: [],
 })
