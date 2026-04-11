@@ -8,6 +8,7 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -18,7 +19,7 @@
     "test:cov": "vitest run --coverage --config vitest.config.ts",
     "test:debug": "node --inspect-brk ./node_modules/vitest/vitest.mjs --run --no-file-parallelism --config vitest.config.ts",
     "test:e2e": "vitest run --config vitest.e2e.config.ts",
-    "test:staged": "yarn test --findRelatedTests",
+    "test:staged": "vitest related --run --passWithNoTests --config vitest.config.ts",
     "test:push": "yarn test --coverage",
     "prepare": "husky"
   },

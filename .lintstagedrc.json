@@ -1,7 +1,7 @@
 {
   "*.ts": [
-    "yarn eslint 'src/**' --fix",
-    "yarn format --check 'src/**'",
-    "yarn test:staged"
+    "eslint --fix",
+    "prettier --write",
+    "vitest related --run --passWithNoTests --config vitest.config.ts"
   ]
 }
