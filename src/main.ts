@@ -4,8 +4,8 @@ import { Logger, ValidationPipe, ValidationError } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { swaggerConfig } from '@shared/infra/docs/swagger.config';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { IncorrectValuesException } from '@shared/exceptions/incorrect-values-exception';
-import { mapperClassValidationErrorToAppException } from '@shared/exceptions/mappers/exception.mapper';
+import { IncorrectValuesException } from '@shared/infra/exceptions/incorrect-values-exception';
+import { mapperClassValidationErrorToAppException } from '@shared/infra/exceptions/mappers/exception.mapper';
 
 async function bootstrap() {
   const logger = new Logger('Main');
