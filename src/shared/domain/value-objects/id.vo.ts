@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto';
-import { InvalidIdException } from '../entities/exceptions/invalid-id.exception';
+import { InvalidIdException } from './exceptions/invalid-id.exception';
 
 export class Id {
   private readonly _value: string;
@@ -24,11 +24,11 @@ export class Id {
     return this._value;
   }
 
-  toString(): string {
-    return this._value;
-  }
-
   equals(other: Id): boolean {
     return this._value === other._value;
+  }
+
+  toString(): string {
+    return this._value;
   }
 }
