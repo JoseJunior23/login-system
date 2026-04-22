@@ -1,6 +1,6 @@
+import { InvalidPasswordException } from '@modules/user/exceptions/invalid-password.exception';
 import { describe, expect, it } from 'vitest';
-import { InvalidPasswordException } from './exceptions/invalid-password.exception';
-import { Password } from './password.vo';
+import { Password } from './password';
 
 describe('Password', () => {
   it('should create a valid password', () => {

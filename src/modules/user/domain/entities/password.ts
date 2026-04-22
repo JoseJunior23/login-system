@@ -1,7 +1,8 @@
-import { InvalidPasswordException } from './exceptions/invalid-password.exception';
+import { InvalidPasswordException } from '@modules/user/exceptions/invalid-password.exception';
 
 export class Password {
   private readonly _value: string;
+
   private constructor(value: string) {
     this._value = value;
   }
@@ -15,6 +16,7 @@ export class Password {
     if (!Password.isValid(value)) {
       throw new InvalidPasswordException();
     }
+
     return new Password(value);
   }
 
