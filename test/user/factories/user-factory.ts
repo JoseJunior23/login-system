@@ -1,4 +1,4 @@
-import { Password } from '@modules/user/domain/entities/password';
+import { HashedPassword } from '@modules/user/domain/entities/hashed-password';
 import { User, UserCreateProps, UserRoles } from '@modules/user/domain/entities/user';
 import { Email } from '@shared/domain/value-objects/email.vo';
 import { Id } from '@shared/domain/value-objects/id.vo';
@@ -10,7 +10,7 @@ export function makeUser(override: Override = {}): User {
     id: Id.create(),
     name: 'John Doe',
     email: Email.create('johndoe@mail.com'),
-    password: Password.create('Abc123@$'),
+    password: HashedPassword.create('hashed-password'),
     role: [UserRoles.USER],
     ...override,
   });

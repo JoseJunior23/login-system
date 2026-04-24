@@ -2,7 +2,7 @@ import { RemoveRoleException } from '@modules/user/exceptions/remove-role.except
 import { Email } from '@shared/domain/value-objects/email.vo';
 import { describe, expect, it, vi } from 'vitest';
 import { makeUser } from '../../../../../test/user/factories/user-factory';
-import { Password } from './password';
+import { HashedPassword } from './hashed-password';
 import { User, UserRoles } from './user';
 
 describe('User', () => {
@@ -10,7 +10,7 @@ describe('User', () => {
     const user = User.create({
       name: 'John Doe',
       email: Email.create('johndoe@mail.com'),
-      password: Password.create('Abc123@$'),
+      password: HashedPassword.create('hashed-password'),
     });
 
     expect(user.role).toEqual([UserRoles.USER]);
@@ -37,7 +37,7 @@ describe('User', () => {
     vi.setSystemTime(new Date('2026-04-21T12:00:00.000Z'));
 
     const email = Email.create('newmail@mail.com');
-    const password = Password.create('Def456@$');
+    const password = HashedPassword.create('updated-hashed-password');
 
     user.updateProfile({
       name: 'Jane Doe',

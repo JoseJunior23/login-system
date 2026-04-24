@@ -1,0 +1,37 @@
+/* eslint-disable @typescript-eslint/require-await */
+import { UserRepository } from '@modules/user/domain/contracts/repositories/user.repository';
+import { User } from '@modules/user/domain/entities/user';
+
+export class InMemoryUserRepository implements UserRepository {
+  public users: User[] = [];
+
+  async create(user: User): Promise<void> {
+    this.users.push(user);
+  }
+
+  async save(user: User): Promise<void> {
+    const raw = this.users.findIndex(data => data.id.equals(user.id));
+
+    if (raw >= 0) this.users[raw] = user;
+  }
+
+  async delete(userId: string): Promise<void> {
+    this.users = this.users.filter(user => user.id.value !== userId);
+  }
+
+  async findById(userId: string): Promise<User | null> {
+    const user = this.users.find(user => user.id.value === userId);
+
+    return user ?? null;
+  }
+
+  async findByEmail(email: string): Promise<User | null> {
+    const user = this.users.find(user => user.email.value === email);
+
+    return user ?? null;
+  }
+
+  async findAll(): Promise<User[]> {
+    return [...this.users];
+  }
+}

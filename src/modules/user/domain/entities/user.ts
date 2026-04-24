@@ -1,5 +1,5 @@
 import { Email } from '@shared/domain/value-objects/email.vo';
-import { Password } from './password';
+import { HashedPassword } from './hashed-password';
 import { BaseEntity } from '@shared/domain/entities/base.entity';
 import { Replace } from '@shared/domain/helpers/replace.helper';
 import { RemoveRoleException } from '@modules/user/exceptions/remove-role.exception';
@@ -12,7 +12,7 @@ export enum UserRoles {
 export interface UserProps {
   name: string;
   email: Email;
-  password: Password;
+  password: HashedPassword;
   role: UserRoles[];
 }
 
@@ -67,11 +67,11 @@ export class User extends BaseEntity {
     this.touch();
   }
 
-  get password(): Password {
+  get password(): HashedPassword {
     return this.userProps.password;
   }
 
-  updatePassword(password: Password): void {
+  updatePassword(password: HashedPassword): void {
     this.userProps.password = password;
     this.touch();
   }
