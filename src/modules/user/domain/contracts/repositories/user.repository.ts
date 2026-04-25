@@ -1,3 +1,4 @@
+import { PaginatedResult } from '@shared/domain/contracts/paginated-result';
 import { User } from '../../entities/user';
 
 export abstract class UserRepository {
@@ -6,5 +7,5 @@ export abstract class UserRepository {
   abstract delete(userId: string): Promise<void>;
   abstract findById(userId: string): Promise<User | null>;
   abstract findByEmail(email: string): Promise<User | null>;
-  abstract findAll(): Promise<User[]>;
+  abstract findAll(page: number, limit: number): Promise<PaginatedResult<User>>;
 }
