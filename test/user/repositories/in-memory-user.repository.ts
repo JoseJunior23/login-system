@@ -16,8 +16,11 @@ export class InMemoryUserRepository implements UserRepository {
     if (raw >= 0) this.users[raw] = user;
   }
 
-  async delete(userId: string): Promise<void> {
+  async delete(userId: string): Promise<boolean> {
+    const initialLength = this.users.length;
     this.users = this.users.filter(user => user.id.value !== userId);
+
+    return this.users.length < initialLength;
   }
 
   async findById(userId: string): Promise<User | null> {
